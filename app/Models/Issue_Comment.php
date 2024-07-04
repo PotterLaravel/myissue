@@ -18,8 +18,7 @@ class Issue_Comment extends Model
         $obj=self::join('issue_user as iu', 'issue_comment.user_id', '=', 'iu.id')
                    ->select('issue_comment.content', 'issue_comment.created_at', 'issue_comment.updated_at', 'iu.email');
         $obj->where('issue_comment.issue_id', $id);
-        //$obj->where('issue_comment.user_id','=', session('userinfo')['id']);
-        $comments = $obj->get();
+        $comments = $obj->paginate(5);
         return $comments;
     }
     public static function create_comment($issue_id, $creator_id, $comment)

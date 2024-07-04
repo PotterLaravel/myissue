@@ -103,13 +103,22 @@
                                 </tr>
                             @endforeach
                         </tbody>
+                        
                     </table>
+                    {{$issues->links()}}
                 @endif
+                
             </div>
         </div>
     </div>
 
     <!-- 引入 Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    {{-- <script>
+        Echo.channel("messages")
+            .listen("messages", (e)=>{
+                console.log(e);
+            });
+    </script> --}}
 </body>
 </html>

@@ -19,7 +19,7 @@ class Issue_Myissue extends Model
         $obj=self::join('issue_user as iu', 'issue_myissue.creator_id', '=', 'iu.id')
         ->select('issue_myissue.title', 'issue_myissue.content', 'issue_myissue.status', 'issue_myissue.tags_name', 'issue_myissue.id', 'issue_myissue.created_at', 'issue_myissue.updated_at', 'issue_myissue.creator_id','iu.email');
         $obj->where('creator_id', $creator_id);
-        $issues = $obj->get();
+        $issues = $obj->paginate(5);
         return $issues;
     }
     public static function check_all_issue()
@@ -27,7 +27,7 @@ class Issue_Myissue extends Model
         //$obj=self::select('title', 'content', 'status', 'tags_name', 'id', 'created_at', 'updated_at', 'creator_id');
         $obj=self::join('issue_user as iu', 'issue_myissue.creator_id', '=', 'iu.id')
         ->select('issue_myissue.title', 'issue_myissue.content', 'issue_myissue.status', 'issue_myissue.tags_name', 'issue_myissue.id', 'issue_myissue.created_at', 'issue_myissue.updated_at', 'issue_myissue.creator_id','iu.email');
-        $issues = $obj->get();
+        $issues = $obj->paginate(5);
         return $issues;
     }
     public static function to_close_issue($issue_id)

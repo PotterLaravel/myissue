@@ -59,6 +59,23 @@
                             </tr>
                         </tbody>
                     </table>
+                    
+                    <h3>发布comment</h3>
+                    <table class="table table-bordered">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form action="/store_comment" method="POST">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+                                    </div>
+                                    <input type="hidden" name="issue_id" value="{{$issue->id}}">
+                                    <br>
+                                    <button type="submit" class="btn btn-success">提交</button>
+                                </form>
+                            </div>
+                        </div>
+                    </table>
                     <h3>历史comment</h3>
                     <table class="table table-bordered">
                         <thead>
@@ -78,22 +95,8 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <h3>发布comment</h3>
-                    <table class="table table-bordered">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <form action="/store_comment" method="POST">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
-                                    </div>
-                                    <input type="hidden" name="issue_id" value="{{$issue->id}}">
-                                    <br>
-                                    <button type="submit" class="btn btn-success">提交</button>
-                                </form>
-                            </div>
-                        </div>
-                    </table>
+                    {{$comments->links()}}
+                    
             </div>
         </div>
     </div>

@@ -14,15 +14,13 @@ class Login extends Controller
         
     }
     public function deal_login(LoginRequest $request){
-        //接用户提交的登录值
         $post_content = $request->post();
         $rt = Issue_User::checklogin($post_content);
         if($rt['error'] == 0){
-            //存储session
             Session::put('userinfo', $rt['info']);
-            return showMessage(['success'=>$rt['msg'], 'url'=>'/mainpage', 'time'=>10]);
+            return showMessage(['success'=>$rt['msg'], 'url'=>'/mainpage', 'time'=>5]);
         }else{
-            return showMessage(['success'=>$rt['msg'], 'url'=>'/login', 'time'=>10]);
+            return showMessage(['success'=>$rt['msg'], 'url'=>'/login', 'time'=>5]);
         }
     }
 }
